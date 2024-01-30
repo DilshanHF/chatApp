@@ -1,37 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.GroupchatApplication.controller.SignupController">
+<AnchorPane fx:id="root" prefHeight="691.0" prefWidth="514.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.GroupchatApplication.controller.SignupController">
    <children>
-      <Pane id="pane" fx:id="pane" prefHeight="159.0" prefWidth="500.0" style="-fx-background-radius: 25; -fx-background-color: #D9EFF7;" styleClass="pane" stylesheets="@../style/style.css">
+      <Pane id="pane" fx:id="pane" prefHeight="166.0" prefWidth="514.0" style="-fx-background-radius: 25; -fx-background-color: #2f3e46;" styleClass="pane" stylesheets="@../style/style.css">
          <children>
-            <Pane layoutX="-1.0" layoutY="130.0" prefHeight="572.0" prefWidth="500.0" style="-fx-background-color: white; -fx-background-radius: 25;" />
             <ImageView fitHeight="80.0" fitWidth="84.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/icons8-chat.gif" />
                </image>
             </ImageView>
-            <Label layoutX="46.0" layoutY="22.0" prefHeight="32.0" prefWidth="180.0" text="                     WELCOME" textAlignment="CENTER" textFill="#193948">
+            <Label layoutX="46.0" layoutY="22.0" prefHeight="32.0" prefWidth="180.0" text="                     WELCOME" textAlignment="CENTER" textFill="#f7fbfc">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="117.0" layoutY="62.0" prefHeight="17.0" prefWidth="286.0" text="Live Chat..." textAlignment="CENTER" textFill="#193948">
+            <Label layoutX="117.0" layoutY="62.0" prefHeight="17.0" prefWidth="286.0" text="Live Chat..." textAlignment="CENTER" textFill="#f7fbfc">
                <font>
                   <Font name="Georgia Bold" size="28.0" />
                </font>
             </Label>
-            <ImageView fx:id="themeView" fitHeight="44.0" fitWidth="48.0" layoutX="434.0" layoutY="25.0" onMouseClicked="#theamViewOnAction" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="themeView" fitHeight="40.0" fitWidth="43.0" layoutX="422.0" layoutY="22.0" onMouseClicked="#themeViewOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/light.png" />
+                  <Image url="@../img/dark.png" />
+               </image></ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane1" layoutX="1.0" layoutY="134.0" prefHeight="572.0" prefWidth="511.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+         <children>
+            <Label fx:id="label1" layoutX="32.0" layoutY="38.0" prefHeight="49.0" prefWidth="367.0" text="Start a new chat now," textFill="#193948">
+               <font>
+                  <Font name="Georgia Bold" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageView" fitHeight="158.0" fitWidth="180.0" layoutX="154.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/images.png" />
                </image>
             </ImageView>
+            <JFXButton layoutX="256.0" layoutY="213.0" onAction="#btnOnImageChoose" prefHeight="40.0" prefWidth="60.0">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-camera-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <TextField fx:id="txtId" layoutX="105.0" layoutY="304.0" prefHeight="25.0" prefWidth="286.0" promptText="Employee Id" />
+            <TextField fx:id="txtUserName" layoutX="105.0" layoutY="354.0" prefHeight="25.0" prefWidth="286.0" promptText="User Name" />
+            <JFXButton buttonType="RAISED" layoutX="179.0" layoutY="419.0" onAction="#btnOnSignUp" prefHeight="48.0" prefWidth="139.0" style="-fx-background-color: #193948;" text="Sign Up" textFill="#f4efef">
+               <font>
+                  <Font name="Georgia Bold" size="19.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="label2" layoutX="200.0" layoutY="528.0" text="Plat Tech(pvt)Ltd." textFill="#193948">
+               <font>
+                  <Font name="Georgia Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
