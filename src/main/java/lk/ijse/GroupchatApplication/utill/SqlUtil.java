@@ -5,7 +5,7 @@ import lk.ijse.GroupchatApplication.db.DbConnection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CrudUtil {
+public class SqlUtil {
     public static <T>T execute(String sql, Object... args) throws SQLException {
         PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
 

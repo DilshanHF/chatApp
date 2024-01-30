@@ -3,6 +3,8 @@ package lk.ijse.GroupchatApplication.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,11 +15,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
+import lk.ijse.GroupchatApplication.dto.UserDto;
+import lk.ijse.GroupchatApplication.model.UserModel;
+import lk.ijse.GroupchatApplication.utill.SystemAlert;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SignupController implements Initializable {
@@ -87,6 +94,35 @@ public class SignupController implements Initializable {
     }
 
     public void btnOnSignUp(ActionEvent actionEvent) {
+        if(!(txtId.getText().isEmpty() || txtUserName.getText().isEmpty())){
+            try {
+                String id = txtId.getText();
+                String name = txtUserName.getText();
+
+                boolean isExist = UserModel.existUser(id,name);
+                if(!isExist){
+                    boolean isSaved;
+                    if(file != null){
+                        InputStream inputStream = new FileInputStream(file);
+                        isSaved = UserModel.saveUser(new UserDto(id,name,inputStream));
+
+                    }else {
+                        isSaved = UserModel.saveUser(new UserDto(id,name,null));
+                    }
+                    if (isSaved){
+                        new SystemAlert(Alert.AlertType.CONFIRMATION,"Confirmation","Signup successfully completed!", ButtonType.OK).show();
+                    }else {
+                        new SystemAlert(Alert.AlertType.WARNING,"Warning","Account is already exists",ButtonType.OK).show();
+                    }
+
+                }else {
+                    new SystemAlert(Alert.AlertType.WARNING,"Warning","Please fill all details",ButtonType.OK).show();
+                }
+            } catch (SQLException | FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
 
 
     }
