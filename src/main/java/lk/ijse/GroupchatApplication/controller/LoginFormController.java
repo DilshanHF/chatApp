@@ -3,6 +3,7 @@ package lk.ijse.GroupchatApplication.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,8 +12,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import lk.ijse.GroupchatApplication.model.UserModel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginFormController {
 
@@ -37,8 +41,30 @@ public class LoginFormController {
     @FXML
     private TextField txtUserName;
 
+    public static String username = "";
+
     @FXML
-    void btnOnLogin(ActionEvent event) {
+    void btnOnLogin(ActionEvent event) throws IOException {
+            if(!txtUserName.getText().isEmpty()){
+                username = txtUserName.getText();
+                boolean isExist = false;
+                try {
+                     isExist = UserModel.existUser(username);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                if(isExist){
+                   Stage stage = (Stage) txtUserName.getScene().getWindow();
+                   stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/chatRoom.fxml"))));
+                   stage.setTitle(username + "'s chat");
+                  // stage.getIcons()
+                    stage.setOnCloseRequest(windowEvent -> chatRoomController.leaveChat());
+                    stage.show();
+                }
+
+            }
+
+
 
     }
 
@@ -64,5 +90,10 @@ public class LoginFormController {
     public void btnOnSignup(ActionEvent actionEvent) throws IOException {
         root.getChildren().clear();
         root.getChildren().add(FXMLLoader.load(getClass().getResource("/view/signup.fxml")));
+    }
+
+    public void txtOnAction(ActionEvent event) throws IOException {
+        btnOnLogin(event);
+
     }
 }

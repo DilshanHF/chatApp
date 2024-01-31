@@ -16,4 +16,9 @@ public class UserModel {
         return SqlUtil.execute("INSERT INTO user VALUES(?,?,?)",
                 dto.getEmployeeId(),dto.getUsername(),dto.getImage());
     }
+
+    public static boolean existUser(String username) throws SQLException {
+        ResultSet rst = SqlUtil.execute("SELECT e_Id FROM user WHERE  username = ?",username);
+        return rst.next();
+    }
 }
