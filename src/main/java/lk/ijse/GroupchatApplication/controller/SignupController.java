@@ -2,6 +2,7 @@ package lk.ijse.GroupchatApplication.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -19,10 +21,7 @@ import lk.ijse.GroupchatApplication.dto.UserDto;
 import lk.ijse.GroupchatApplication.model.UserModel;
 import lk.ijse.GroupchatApplication.utill.SystemAlert;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -51,15 +50,17 @@ public class SignupController implements Initializable {
     public void themeViewOnAction(MouseEvent mouseEvent) {
         if(themeView.getImage().getUrl().equals(new Image("img/dark.png").getUrl())){
             root.setStyle("-fx-background-color: #193948;");
-            pane.setStyle("-fx-background-color: #2f3e46;");
             pane1.setStyle("-fx-background-color: #193948;");
+            pane.setStyle("-fx-background-color: #2f3e46;");
             label1.setTextFill(Color.web("#ffffff")); // This also sets the font color to white
             label2.setTextFill(Color.web("#ffffff")); // This also sets the font color to white
             themeView.setImage(new Image("img/light.png"));
         }else {
             root.setStyle("-fx-background-color:  #ffffff;");
-            pane.setStyle("-fx-background-color:   #2f3e46;");
             pane1.setStyle("-fx-background-color:  #ffffff ;");
+            pane.setStyle("-fx-background-color:   #2f3e46;");
+            label1.setTextFill(Color.web("#193948")); // This also sets the font color to white
+            label2.setTextFill(Color.web("#193948"));
             themeView.setImage(new Image("img/dark.png"));;
         }
     }
@@ -110,20 +111,37 @@ public class SignupController implements Initializable {
                         isSaved = UserModel.saveUser(new UserDto(id,name,null));
                     }
                     if (isSaved){
-                        new SystemAlert(Alert.AlertType.CONFIRMATION,"Confirmation","Signup successfully completed!", ButtonType.OK).show();
+                        new Alert(Alert.AlertType.CONFIRMATION,"Signup successfully completed!").showAndWait();
+                        clearData();
+                        nextInterface();
+
                     }else {
-                        new SystemAlert(Alert.AlertType.WARNING,"Warning","Account is already exists",ButtonType.OK).show();
+                        new Alert(Alert.AlertType.ERROR,"Not Sign Up").showAndWait();
                     }
 
                 }else {
-                    new SystemAlert(Alert.AlertType.WARNING,"Warning","Please fill all details",ButtonType.OK).show();
+                    new Alert(Alert.AlertType.ERROR,"Account is already exists").showAndWait();
                 }
-            } catch (SQLException | FileNotFoundException e) {
-                throw new RuntimeException(e);
+            } catch (SQLException | IOException e) {
+               throw new RuntimeException(e);
+               // new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
             }
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Please fill data ").showAndWait();
         }
 
 
+
+    }
+
+    private void nextInterface() throws IOException {
+        root.getChildren().clear();
+        root.getChildren().add(FXMLLoader.load(getClass().getResource("/view/login.fxml")));
+    }
+
+    private void clearData() {
+        txtId.clear();
+        txtUserName.clear();
 
     }
 }

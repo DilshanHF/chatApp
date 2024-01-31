@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="691.0" prefWidth="514.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.GroupchatApplication.controller.LoginFormController">
+   <children>
+      <Pane id="pane" fx:id="pane" prefHeight="166.0" prefWidth="514.0" style="-fx-background-radius: 25; -fx-background-color: #2f3e46;" styleClass="pane" stylesheets="@../style/style.css">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="84.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons8-chat.gif" />
+               </image>
+            </ImageView>
+            <Label layoutX="46.0" layoutY="22.0" prefHeight="32.0" prefWidth="180.0" text="                     WELCOME" textAlignment="CENTER" textFill="#f7fbfc">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="117.0" layoutY="62.0" prefHeight="17.0" prefWidth="286.0" text="Live Chat..." textAlignment="CENTER" textFill="#f7fbfc">
+               <font>
+                  <Font name="Georgia Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="themeView" fitHeight="40.0" fitWidth="43.0" layoutX="422.0" layoutY="22.0" onMouseClicked="#themeViewOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/dark.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane1" layoutX="1.0" layoutY="134.0" prefHeight="572.0" prefWidth="511.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+         <children>
+            <Label fx:id="label1" layoutX="143.0" layoutY="404.0" prefHeight="32.0" prefWidth="169.0" text="Don't have an account?" textFill="#193948">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtUserName" layoutX="156.0" layoutY="301.0" prefHeight="25.0" prefWidth="223.0" style="-fx-background-color: white;" />
+            <JFXButton buttonType="RAISED" layoutX="168.0" layoutY="355.0" onAction="#btnOnLogin" prefHeight="48.0" prefWidth="180.0" style="-fx-background-color: #193948;" text="Login " textFill="#f4efef">
+               <font>
+                  <Font name="Georgia Bold" size="19.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="label2" layoutX="200.0" layoutY="528.0" text="Plat Tech(pvt)Ltd." textFill="#193948">
+               <font>
+                  <Font name="Georgia Bold" size="12.0" />
+               </font>
+            </Label>
+            <Line endX="201.60000610351562" layoutX="207.0" layoutY="327.0" startX="-100.0" />
+            <JFXButton buttonType="RAISED" layoutX="312.0" layoutY="406.0" onAction="#btnOnSignup" prefHeight="25.0" prefWidth="68.0" text="Sign up" textFill="#ee093c">
+               <font>
+                  <Font name="Georgia Bold" size="12.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="156.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/3585370_66215.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

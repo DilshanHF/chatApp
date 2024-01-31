@@ -13,8 +13,8 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/signup.fxml"))));
-        stage.setTitle("Login");
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login.fxml"))));
+        stage.setTitle("login");
        // stage.getIcons().add(new Image("img/logo.png"));
         stage.centerOnScreen();
         stage.show();

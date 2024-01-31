@@ -6,10 +6,12 @@ import java.sql.SQLException;
 
 public class DbConnection {
     private static DbConnection dbConnection;
+
     private Connection connection;
+
     private DbConnection() throws SQLException {
         connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/inrich",
+                "jdbc:mysql://localhost:3306/chat_app",
                 "root",
                 "Ijse@123"
         );
@@ -21,5 +23,4 @@ public class DbConnection {
     public Connection getConnection() {
         return connection;
     }
-
 }
