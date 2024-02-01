@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="701.0" prefWidth="468.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.GroupchatApplication.controller.chatRoomController">
+<AnchorPane fx:id="root" prefHeight="701.0" prefWidth="468.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.GroupchatApplication.controller.ClientRoomController">
    <children>
       <Pane id="pane" fx:id="pane" prefHeight="126.0" prefWidth="468.0" style="-fx-background-radius: 25; -fx-background-color: #2f3e46;" styleClass="pane" stylesheets="@../style/style.css">
          <children>
@@ -49,7 +49,7 @@
                   <Image url="@../img/chat%20wallpaper.jpg" />
                </image>
             </ImageView>
-            <TextField layoutX="70.0" layoutY="574.0" prefHeight="35.0" prefWidth="278.0" promptText="Type here" />
+            <TextField fx:id="txtMsgArea" layoutX="70.0" layoutY="574.0" prefHeight="35.0" prefWidth="278.0" promptText="Type here" />
             <JFXButton layoutX="14.0" layoutY="574.0" onAction="#btnEmojiOnAction" prefHeight="14.0" prefWidth="26.0" text="                 ">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">

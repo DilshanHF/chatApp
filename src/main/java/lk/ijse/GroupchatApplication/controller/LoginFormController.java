@@ -3,7 +3,9 @@ package lk.ijse.GroupchatApplication.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,12 +15,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import lk.ijse.GroupchatApplication.client.Client;
 import lk.ijse.GroupchatApplication.model.UserModel;
+import lk.ijse.GroupchatApplication.server.Server;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class LoginFormController {
+public class LoginFormController implements Initializable {
 
     @FXML
     private Label label1;
@@ -53,13 +60,14 @@ public class LoginFormController {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                if(isExist){
-                   Stage stage = (Stage) txtUserName.getScene().getWindow();
-                   stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/chatRoom.fxml"))));
-                   stage.setTitle(username + "'s chat");
-                  // stage.getIcons()
-                    stage.setOnCloseRequest(windowEvent -> chatRoomController.leaveChat());
-                    stage.show();
+                if(isExist) {
+
+                    Client client = new Client(username);
+                    Thread thread = new Thread(client);
+                    thread.start();
+
+                }else{
+                    new Alert(Alert.AlertType.ERROR,"user not exist");
                 }
 
             }
@@ -95,5 +103,13 @@ public class LoginFormController {
     public void txtOnAction(ActionEvent event) throws IOException {
         btnOnLogin(event);
 
+    }
+
+    @SneakyThrows
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Server server = Server.getServerSocket();
+        Thread thread = new Thread(server);
+        thread.start();
     }
 }

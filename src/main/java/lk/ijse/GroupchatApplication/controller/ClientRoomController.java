@@ -4,14 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lk.ijse.GroupchatApplication.client.Client;
 
-public class chatRoomController {
+public class ClientRoomController {
 
     @FXML
     private AnchorPane emojiAnchorpane;
@@ -45,6 +47,8 @@ public class chatRoomController {
 
     @FXML
     private VBox vBox;
+    @FXML
+    private TextField txtMsgArea;
 
     public static void leaveChat() {
     }
@@ -69,4 +73,12 @@ public class chatRoomController {
 
     }
 
+    public void writeMessage(String message) {
+    }
+
+    public void setClient(Client client) {
+    }
+
+    public void setImage(byte[] bytes, String utf) {
+    }
 }
