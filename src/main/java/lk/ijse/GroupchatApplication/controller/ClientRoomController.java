@@ -83,6 +83,7 @@ public class ClientRoomController implements Initializable {
     @FXML
     private TextField txtMsgArea;
     private Client client;
+    public static String username = "";
 
     public static void leaveChat() {
 
@@ -186,7 +187,6 @@ public class ClientRoomController implements Initializable {
         HBox hBox = new HBox();
         Label messageLbl = new Label(sender);
         messageLbl.setStyle("-fx-background-color:   #2980b9;-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: white;-fx-wrap-text: true;-fx-alignment: center;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
-
         hBox.setStyle("-fx-fill-height: true; -fx-min-height: 50; -fx-pref-width: 520; -fx-max-width: 520; -fx-padding: 10; " + (sender.equals(client.getName()) ? "-fx-alignment: center-right;" : "-fx-alignment: center-left;"));
         // Display the image in an ImageView or any other UI component
         Platform.runLater(() -> {
@@ -204,6 +204,8 @@ public class ClientRoomController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        lblName.setText(LoginFormController.username);
         emojiAnchorpane.setVisible(false);
         int buttonIndex = 0;
         for (int row = 0; row < 4; row++){
