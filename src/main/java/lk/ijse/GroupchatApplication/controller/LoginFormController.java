@@ -65,6 +65,7 @@ public class LoginFormController implements Initializable {
                     Client client = new Client(username);
                     Thread thread = new Thread(client);
                     thread.start();
+                    txtUserName.clear();
 
                 }else{
                     new Alert(Alert.AlertType.ERROR,"user not exist");

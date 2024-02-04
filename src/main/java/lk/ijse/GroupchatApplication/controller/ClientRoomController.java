@@ -149,17 +149,24 @@ public class ClientRoomController implements Initializable {
          hBox.getChildren().add(massageLbl);
          vBox.getChildren().add(hBox);
          new Thread(() -> {
-             playSound("/media/messageSend.mp3");
+             playSound("resources/media/apple_pay.mp3");
          }).start();
 
     }
 
     private void playSound(String sound) {
-        try {
-            new Player(new BufferedInputStream(getClass().getClassLoader().getResourceAsStream(sound))).play();
-        } catch (JavaLayerException e) {
-            new Alert(Alert.AlertType.ERROR, "Audio not available").show();
-        }
+
+            try (BufferedInputStream inputStream = new BufferedInputStream(getClass().getClassLoader().getResourceAsStream(sound))) {
+                Player player = new Player(inputStream);
+                player.play();
+            } catch (JavaLayerException | IOException e) {
+                e.printStackTrace();
+                Platform.runLater(() -> {
+                    new Alert(Alert.AlertType.ERROR, "Error playing sound").show();
+                });
+            }
+
+
     }
 
     @FXML
